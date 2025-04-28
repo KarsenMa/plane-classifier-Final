@@ -19,7 +19,7 @@ import io
 st.set_page_config(page_title="Plane Classifier", page_icon="🛫", layout="wide")
 
 # Create QR code
-webapp_url = "https://your-webapp-url.com"  # <-- your real URL
+webapp_url = "https://your-webapp-url.com"  # <-- Replace this!
 
 qr = qrcode.QRCode(
     version=1,
@@ -31,19 +31,24 @@ qr.add_data(webapp_url)
 qr.make(fit=True)
 
 qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
-qr_img = qr_img.resize((100, 100), Image.LANCZOS)
+qr_img = qr_img.resize((120, 120), Image.LANCZOS)
 
-# Save QR as base64
+# Save QR to base64
 buffer = io.BytesIO()
 qr_img.save(buffer, format="PNG")
 qr_base64 = base64.b64encode(buffer.getvalue()).decode()
 
-# Pure HTML+Streamlit clean layout
+# Layout with flexbox: title + QR code + small description under QR
 st.markdown(
     f"""
     <div style="display: flex; align-items: center; justify-content: space-between;">
-        <h1 style="margin: 0;">🛫 Plane Classifier</h1>
-        <img src="data:image/png;base64,{qr_base64}" width="100" height="100">
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+            <h1 style="margin: 0; font-size: 48px;">🛫 Plane Classifier</h1>
+        </div>
+        <div style="text-align: center;">
+            <img src="data:image/png;base64,{qr_base64}" width="120" height="120">
+            <div style="margin-top: 8px; font-size: 16px; color: gray;">📱 Scan to open the web app</div>
+        </div>
     </div>
     """,
     unsafe_allow_html=True
