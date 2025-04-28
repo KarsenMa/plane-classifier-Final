@@ -42,7 +42,7 @@ jobs: #Run on ubuntu
           cat test_results.txt
 
       - name: Upload test results
-        uses: actions/upload-artifact@v2.0.1
+        uses: actions/upload-artifact@v3
         with:
           name: integration-test-results
           path: test_results.txt
