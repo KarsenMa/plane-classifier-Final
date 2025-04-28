@@ -25,6 +25,7 @@ jobs: #Run on ubuntu
         run: |
           python -m pip install --upgrade pip
           pip install -r Web_App/requirements.txt
+          pip install Pillow ultralytics  # Required for integration tests
 
       - name: Lint #Check for errors
         run: |
@@ -32,7 +33,19 @@ jobs: #Run on ubuntu
           flake8 Web_App/ --ignore=E501,E402 
         #ignore long lines and imports not at top because we have to preempt imports to fix runtime errors on cloud                  
 
-      
+      - name: Integration Testing
+        run: |
+          # Run the integration test script
+          python Testing_Files/integration_test.py
+          
+          # Display the results
+          cat test_results.txt
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: integration-test-results
+          path: test_results.txt
 
       # Optional: Run tests if you have a test suite
       # - name: Run tests
