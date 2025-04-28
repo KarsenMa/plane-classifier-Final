@@ -12,9 +12,9 @@ import time
 import qrcode
 from PIL import Image
 
-# Configure Streamlit page
-st.set_page_config(page_title="Plane Classifier",
-                   page_icon="🛫", layout="wide")
+
+# Set page config first
+st.set_page_config(page_title="Plane Classifier", page_icon="🛫", layout="wide")
 
 # Create QR code
 webapp_url = "https://your-webapp-url.com"  # <-- Replace this!
@@ -31,22 +31,14 @@ qr.make(fit=True)
 qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
 qr_img = qr_img.resize((120, 120), Image.LANCZOS)
 
-# Create a container (acts like a visual box)
-with st.container():
-    # Add optional spacing/padding
-    st.write("")  # Empty line for top spacing
+# Layout: 2 columns
+col1, col2 = st.columns([5, 1])
 
-    # Two columns inside the box
-    col1, col2 = st.columns([5, 1])
+with col1:
+    st.markdown("# 🛫 Plane Classifier")  # Use markdown heading, NOT st.title()
 
-    with col1:
-        st.title("🛫 Plane Classifier")  # Title on left
-
-    with col2:
-        st.image(qr_img, caption="📱", use_container_width=False)  # QR on right
-
-    # Add optional spacing at the bottom
-    st.write("")  # Empty line for bottom spacing
+with col2:
+    st.image(qr_img, caption="📱", use_container_width=False)  # QR on right
 # Model configuration
 MODEL_CONFIG = {
     "Commercial Jets + BB": {"path": "custom.pt", "type": "detection"},
