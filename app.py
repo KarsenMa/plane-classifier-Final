@@ -19,7 +19,7 @@ import io
 st.set_page_config(page_title="Plane Classifier", page_icon="🛫", layout="wide")
 
 # Create QR code
-webapp_url = "https://your-webapp-url.com"  # <-- Replace this!
+webapp_url = "https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.app/"
 
 qr = qrcode.QRCode(
     version=1,
@@ -38,7 +38,7 @@ buffer = io.BytesIO()
 qr_img.save(buffer, format="PNG")
 qr_base64 = base64.b64encode(buffer.getvalue()).decode()
 
-# Layout with flexbox: title + QR code + small description under QR
+# Layout
 st.markdown(
     f"""
     <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -46,7 +46,7 @@ st.markdown(
             <h1 style="margin: 0; font-size: 48px;">🛫 Plane Classifier</h1>
         </div>
         <div style="text-align: center;">
-            <img src="data:image/png;base64,{qr_base64}" width="120" height="120">
+            <img src="data:image/png;base64,{qr_base64}" width="100" height="100">
             <div style="margin-top: 8px; font-size: 16px; color: gray;">📱 Scan to open the web app</div>
         </div>
     </div>
@@ -197,8 +197,6 @@ def stream_video(model, video_path, model_type, class_names, frame_skip=1):
     label_display.markdown(f"### 🛫 Final Prediction: **{last_label_text}**")
     st.success("🟢 Video processing complete!")
 
-
-st.title("✈️ Plane Classifier")
 
 model_option_1 = "Commercial Jets + BB"
 model_option_2 = "FGVC 100"
