@@ -38,7 +38,7 @@ with col1:
     st.markdown("# 🛫 Plane Classifier")  # Use markdown heading, NOT st.title()
 
 with col2:
-    st.image(qr_img, caption="📱", use_container_width=False)  # QR on right
+    st.image(qr_img, caption="erererer", use_container_width=False)  # QR on right
 # Model configuration
 MODEL_CONFIG = {
     "Commercial Jets + BB": {"path": "custom.pt", "type": "detection"},
