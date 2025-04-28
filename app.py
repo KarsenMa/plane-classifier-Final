@@ -16,9 +16,6 @@ from PIL import Image
 st.set_page_config(page_title="Plane Classifier",
                    page_icon="🛫", layout="wide")
 
-# Set page title and layout
-st.set_page_config(page_title="Plane Classifier", page_icon="🛫", layout="wide")
-
 # Create two columns: left for title, right for QR
 col1, col2 = st.columns([4, 1])  # Adjust widths: 4x space for title, 1x for QR
 
