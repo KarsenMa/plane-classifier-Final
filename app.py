@@ -31,7 +31,7 @@ qr.add_data(webapp_url)
 qr.make(fit=True)
 
 qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
-qr_img = qr_img.resize((120, 120), Image.LANCZOS)
+qr_img = qr_img.resize((100, 100), Image.LANCZOS)
 
 # Save QR to base64
 buffer = io.BytesIO()
