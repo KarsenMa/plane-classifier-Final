@@ -1,6 +1,6 @@
 streamlit
 ultralytics
-torch==2.1.2
+torch
 torchvision
 Pillow
 opencv-python
