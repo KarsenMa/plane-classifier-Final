@@ -31,7 +31,7 @@ qr.add_data(webapp_url)
 qr.make(fit=True)
 
 qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
-qr_img = qr_img.resize((100, 100), Image.LANCZOS)
+qr_img = qr_img.resize((80, 80), Image.LANCZOS)
 
 # Save QR to base64
 buffer = io.BytesIO()
@@ -46,8 +46,8 @@ st.markdown(
             <h1 style="margin: 0; font-size: 48px;">🛫 Plane Classifier</h1>
         </div>
         <div style="flex: 2; text-align: center;">
-            <img src="data:image/png;base64,{qr_base64}" width="100" height="100" style="margin-bottom: 4px;">
-            <div style="font-size: 14px; color: gray;">📱 Scan to open the web app</div>
+            <img src="data:image/png;base64,{qr_base64}" width="80" height="80" style="margin-bottom: 4px;">
+            <div style="font-size: 14px; color: gray;">Scan to open the web app</div>
         </div>
     </div>
     """,
