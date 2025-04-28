@@ -12,7 +12,7 @@ import time
 
 # Configure Streamlit page
 st.set_page_config(page_title="Plane Classifier",
-                   page_icon="✈️", layout="wide")
+                   page_icon="🛫", layout="wide")
 
 # Model configuration
 MODEL_CONFIG = {
@@ -143,7 +143,7 @@ def stream_video(model, video_path, model_type, class_names, frame_skip=1):
 
             frame_display.image(
                 display_img, caption=f"Frame {processed_frames+1}", use_container_width=True)
-            label_display.markdown(f"### ✈️ Prediction: **{label_text}**")
+            label_display.markdown(f"### 🛫 Prediction: **{label_text}**")
 
             last_label_text = label_text
 
@@ -154,8 +154,8 @@ def stream_video(model, video_path, model_type, class_names, frame_skip=1):
 
     cap.release()
     progress.empty()
-    label_display.markdown(f"### ✈️ Final Prediction: **{last_label_text}**")
-    st.success("✅ Video processing complete!")
+    label_display.markdown(f"### 🛫 Final Prediction: **{last_label_text}**")
+    st.success("🟢 Video processing complete!")
 
 
 st.title("✈️ Plane Classifier")
