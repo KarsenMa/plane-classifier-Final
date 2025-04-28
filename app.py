@@ -41,13 +41,13 @@ qr_base64 = base64.b64encode(buffer.getvalue()).decode()
 # Layout
 st.markdown(
     f"""
-    <div style="display: flex; align-items: center; justify-content: space-between;">
-        <div style="display: flex; flex-direction: column; justify-content: center;">
-            <h1 style="margin: 0; font-size: 46px;">🛫 Plane Classifier</h1>
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0;">
+        <div style="flex: 8;">
+            <h1 style="margin: 0; font-size: 48px;">🛫 Plane Classifier</h1>
         </div>
-        <div style="text-align: center;">
-            <img src="data:image/png;base64,{qr_base64}" width="100" height="100">
-            <div style="margin-top: 8px; font-size: 16px; color: gray;">Scan to open the web app</div>
+        <div style="flex: 2; text-align: center;">
+            <img src="data:image/png;base64,{qr_base64}" width="100" height="100" style="margin-bottom: 4px;">
+            <div style="font-size: 14px; color: gray;">📱 Scan to open the web app</div>
         </div>
     </div>
     """,
