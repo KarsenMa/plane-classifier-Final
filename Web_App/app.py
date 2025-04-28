@@ -1,3 +1,7 @@
+import os
+os.environ["STREAMLIT_WATCHER_TYPE"] = "none"
+
+
 import streamlit as st
 from ultralytics import YOLO
 from PIL import Image
