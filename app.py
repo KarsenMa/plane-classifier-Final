@@ -240,7 +240,7 @@ elif selected_model == model_option_2:
     config = MODEL_CONFIG[model_option_2]
     model = load_model(config["path"])
     model_type = config["type"]
-    current_class_names = FGVC_CLASS_NAMES
+    current_class_names = model.names
 
 if model:
     file_option = st.radio("Select input type:", [
