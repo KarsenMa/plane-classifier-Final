@@ -1,0 +1,7 @@
+streamlit
+Pillow
+ultralytics
+random
+os
+csv
+pathlib
