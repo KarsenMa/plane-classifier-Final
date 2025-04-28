@@ -4,3 +4,4 @@ torch
 torchvision
 Pillow
 opencv-python
+streamlit-option-menu
