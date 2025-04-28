@@ -37,7 +37,7 @@ with col2:
     qr.make(fit=True)
 
     qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
-    qr_img = qr_img.resize((120, 120), Image.LANCZOS)  # Make a little smaller
+    qr_img = qr_img.resize((100, 100), Image.LANCZOS)  # Make a little smaller
 
     st.image(qr_img, caption="📱 Scan Me!", use_container_width=False)
 # Model configuration
