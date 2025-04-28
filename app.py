@@ -16,35 +16,30 @@ from PIL import Image
 st.set_page_config(page_title="Plane Classifier",
                    page_icon="🛫", layout="wide")
 
-# Create two columns: left for title, right for QR
-col1, col2 = st.columns([4, 1])  # Adjust widths: 4x space for title, 1x for QR
+
+# Create columns: title on left, QR on right
+# Adjust width ratio (4 parts title, 1 part QR)
+col1, col2 = st.columns([4, 1])
 
 with col1:
-    st.title("🛫 Plane Classifier")
+    st.title("🛫 Plane Classifier")  # Move title **inside** col1
 
 with col2:
-    # Webapp URL
-    webapp_url = "https://your-webapp-url.com"  # <-- Replace this!
+    webapp_url = "https://your-webapp-url.com"  # <-- Replace with your real URL
 
-    # Generate QR Code
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_H,
-        box_size=6,   # Smaller box size
-        border=2,     # Smaller border
+        box_size=6,
+        border=2,
     )
     qr.add_data(webapp_url)
     qr.make(fit=True)
 
-    # Make styled QR (red fill, white background)
     qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
+    qr_img = qr_img.resize((120, 120), Image.LANCZOS)  # Make a little smaller
 
-    # Resize even smaller if needed
-    qr_img = qr_img.resize((150, 150), Image.LANCZOS)  # 150x150 pixels
-
-    # Display QR code
     st.image(qr_img, caption="📱 Scan Me!", use_container_width=False)
-
 # Model configuration
 MODEL_CONFIG = {
     "Commercial Jets + BB": {"path": "custom.pt", "type": "detection"},
