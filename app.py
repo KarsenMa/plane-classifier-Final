@@ -29,17 +29,19 @@ qr.add_data(webapp_url)
 qr.make(fit=True)
 
 qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
-qr_img = qr_img.resize((120, 120), Image.LANCZOS)
+qr_img = qr_img.resize((100, 100), Image.LANCZOS)  # Smaller QR
 
-# Layout
-col1, col2 = st.columns([5, 1])
+# Layout: 2 columns
+col1, col2 = st.columns([6, 1])  # Wider title, narrower QR
 
 with col1:
-    # Smaller heading, not giant # or title
-    st.markdown("## 🛫 Plane Classifier")
+    st.markdown("## 🛫 Plane Classifier")  # Smaller title
 
 with col2:
-    st.image(qr_img, caption="", use_container_width=False)  # QR code
+    st.image(qr_img, caption=" ", use_container_width=False)  # NO text caption
+
+# Optional: add a slight separator (space)
+st.write("---")
 # Model configuration
 MODEL_CONFIG = {
     "Commercial Jets + BB": {"path": "custom.pt", "type": "detection"},
