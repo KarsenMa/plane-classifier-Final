@@ -16,30 +16,37 @@ from PIL import Image
 st.set_page_config(page_title="Plane Classifier",
                    page_icon="🛫", layout="wide")
 
+# Create QR code
+webapp_url = "https://your-webapp-url.com"  # <-- Replace this!
 
-# Create columns: title on left, QR on right
-# Adjust width ratio (4 parts title, 1 part QR)
-col1, col2 = st.columns([4, 1])
+qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_H,
+    box_size=6,
+    border=2,
+)
+qr.add_data(webapp_url)
+qr.make(fit=True)
 
-with col1:
-    st.title("🛫 Plane Classifier")  # Move title **inside** col1
+qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
+qr_img = qr_img.resize((120, 120), Image.LANCZOS)
 
-with col2:
-    webapp_url = "https://your-webapp-url.com"  # <-- Replace with your real URL
+# Create a container (acts like a visual box)
+with st.container():
+    # Add optional spacing/padding
+    st.write("")  # Empty line for top spacing
 
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_H,
-        box_size=6,
-        border=2,
-    )
-    qr.add_data(webapp_url)
-    qr.make(fit=True)
+    # Two columns inside the box
+    col1, col2 = st.columns([5, 1])
 
-    qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
-    qr_img = qr_img.resize((100, 100), Image.LANCZOS)  # Make a little smaller
+    with col1:
+        st.title("🛫 Plane Classifier")  # Title on left
 
-    st.image(qr_img, caption="📱 Scan Me!", use_container_width=False)
+    with col2:
+        st.image(qr_img, caption="📱", use_container_width=False)  # QR on right
+
+    # Add optional spacing at the bottom
+    st.write("")  # Empty line for bottom spacing
 # Model configuration
 MODEL_CONFIG = {
     "Commercial Jets + BB": {"path": "custom.pt", "type": "detection"},
