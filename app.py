@@ -10,6 +10,7 @@ import os
 import numpy as np
 import time
 import qrcode
+from PIL import Image
 
 # Configure Streamlit page
 st.set_page_config(page_title="Plane Classifier",
@@ -17,12 +18,30 @@ st.set_page_config(page_title="Plane Classifier",
 
 st.title("🛫 Plane Classifier")
 
-# Add QR Code
 st.subheader("🔗 Access from your phone")
-webapp_url = "https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.app/"
-qr = qrcode.make(webapp_url)
-st.image(qr, caption="📱 Scan to open!", use_container_width=False)
 
+# Webapp URL you want users to open
+webapp_url = "https://your-webapp-url.com"  # <-- Replace with your actual URL
+
+# Create QR Code
+qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_H,
+    box_size=8,
+    border=4,
+)
+qr.add_data(webapp_url)
+qr.make(fit=True)
+
+# Style the QR code
+qr_img = qr.make_image(fill_color="#1f77b4", back_color="white").convert('RGB')
+
+# Resize the QR image for display (optional for consistency)
+qr_img = qr_img.resize((250, 250), Image.LANCZOS)
+
+# Show the QR code
+st.image(qr_img, caption="📱 Scan to open the Plane Classifier!",
+         use_container_width=False)
 
 # Model configuration
 MODEL_CONFIG = {
