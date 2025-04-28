@@ -69,6 +69,7 @@ def classify_image(model, image, model_type, class_names):
     return label, confidence, output_image
 
 # ... (paste the full stream_video function here) ...
+# Modified stream_video function
 def stream_video(model, video_path, model_type, class_names, frame_skip=1):
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -85,6 +86,7 @@ def stream_video(model, video_path, model_type, class_names, frame_skip=1):
 
     frame_idx = 0
     processed_frames = 0
+    last_label_text = "No prediction calculated." # Variable to store the last label
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -98,12 +100,12 @@ def stream_video(model, video_path, model_type, class_names, frame_skip=1):
             rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             pil_img = Image.fromarray(rgb_frame)
             display_img = pil_img.copy()
-            label_text = "Processing..."
+            label_text = "Processing..." # Default for this frame
 
             results = model.predict(pil_img, verbose=False)
 
             if model_type == "detection":
-                label_text = "No plane detected"
+                label_text = "No plane detected" # Default if no boxes
                 if results and results[0].boxes is not None and len(results[0].boxes) > 0:
                     boxes = results[0].boxes
                     cls_id = int(boxes.cls[0].item())
@@ -117,7 +119,7 @@ def stream_video(model, video_path, model_type, class_names, frame_skip=1):
                     draw.text(text_position, label_text, fill="red")
 
             elif model_type == "classification":
-                 label_text = "Classification failed"
+                 label_text = "Classification failed" # Default if no probs
                  if results and results[0].probs is not None:
                     probs = results[0].probs
                     cls_id = probs.top1
@@ -125,8 +127,13 @@ def stream_video(model, video_path, model_type, class_names, frame_skip=1):
                     label = class_names.get(cls_id, f"Unknown ({cls_id})")
                     label_text = f"{label} ({confidence*100:.1f}%)"
 
+            # Update display for the current frame
             frame_display.image(display_img, caption=f"Frame {processed_frames+1}", use_container_width=True)
             label_display.markdown(f"### ✈️ Prediction: **{label_text}**")
+
+            # --- Store the latest label ---
+            last_label_text = label_text
+            # -----------------------------
 
             time.sleep(max(delay * frame_skip, 0.01))
             processed_frames += 1
@@ -135,7 +142,13 @@ def stream_video(model, video_path, model_type, class_names, frame_skip=1):
 
     cap.release()
     progress.empty()
-    label_display.markdown("### ✅ Video Processing Complete!")
+
+    # --- Update the label display with the LAST known label ---
+    label_display.markdown(f"### ✈️ Final Prediction: **{last_label_text}**")
+    # ---------------------------------------------------------
+
+    # Optionally, show a separate completion message
+    st.success("✅ Video processing complete!")
 
 # --- Streamlit UI ---
 st.title("✈️ Plane Classifier")
