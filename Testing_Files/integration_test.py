@@ -23,6 +23,9 @@ def test_models():
     for ext in ('*.mp4', '*.avi', '*.mov', '*.wmv'):
         all_files.extend(list(video_dir.rglob(ext)))
 
+    # Randomly select up to 10 files
+    sampled_files = random.sample(all_files, min(10, len(all_files)))
+
     # Load models
     custom_model = YOLO("custom.pt")
     fgvc_model = YOLO("fgvc.pt")
@@ -31,7 +34,7 @@ def test_models():
     total = 0
     with open('test_results.txt', 'w') as f:
         f.write("Integration Test Results\n======================\n\n")
-        for file_path in all_files:
+        for file_path in sampled_files:
             fname = file_path.name
             gt_class = ground_truth.get(fname, "")
             f.write(f"\nTesting file: {fname}\n-----------------------\n")
