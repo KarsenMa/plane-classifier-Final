@@ -9,10 +9,20 @@ import cv2
 import os
 import numpy as np
 import time
+import qrcode
 
 # Configure Streamlit page
 st.set_page_config(page_title="Plane Classifier",
                    page_icon="🛫", layout="wide")
+
+st.title("🛫 Plane Classifier")
+
+# Add QR Code
+st.subheader("🔗 Access from your phone")
+webapp_url = "https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.app/"
+qr = qrcode.make(webapp_url)
+st.image(qr, caption="📱 Scan to open!", use_container_width=False)
+
 
 # Model configuration
 MODEL_CONFIG = {
