@@ -5,3 +5,4 @@ torchvision
 Pillow
 opencv-python
 streamlit-option-menu
+qrcode[pil]
