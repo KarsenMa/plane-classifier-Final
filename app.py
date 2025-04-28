@@ -13,7 +13,7 @@ import qrcode
 from PIL import Image
 
 
-# Set page config first
+# Set page config
 st.set_page_config(page_title="Plane Classifier", page_icon="🛫", layout="wide")
 
 # Create QR code
@@ -31,14 +31,15 @@ qr.make(fit=True)
 qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
 qr_img = qr_img.resize((120, 120), Image.LANCZOS)
 
-# Layout: 2 columns
+# Layout
 col1, col2 = st.columns([5, 1])
 
 with col1:
-    st.markdown("# 🛫 Plane Classifier")  # Use markdown heading, NOT st.title()
+    # Smaller heading, not giant # or title
+    st.markdown("## 🛫 Plane Classifier")
 
 with col2:
-    st.image(qr_img, caption="erererer", use_container_width=False)  # QR on right
+    st.image(qr_img, caption="", use_container_width=False)  # QR code
 # Model configuration
 MODEL_CONFIG = {
     "Commercial Jets + BB": {"path": "custom.pt", "type": "detection"},
