@@ -16,32 +16,37 @@ from PIL import Image
 st.set_page_config(page_title="Plane Classifier",
                    page_icon="🛫", layout="wide")
 
-st.title("🛫 Plane Classifier")
+# Set page title and layout
+st.set_page_config(page_title="Plane Classifier", page_icon="🛫", layout="wide")
 
-st.subheader("🔗 Access from your phone")
+# Create two columns: left for title, right for QR
+col1, col2 = st.columns([4, 1])  # Adjust widths: 4x space for title, 1x for QR
 
-# Webapp URL you want users to open
-webapp_url = "https://your-webapp-url.com"  # <-- Replace with your actual URL
+with col1:
+    st.title("🛫 Plane Classifier")
 
-# Create QR Code
-qr = qrcode.QRCode(
-    version=1,
-    error_correction=qrcode.constants.ERROR_CORRECT_H,
-    box_size=8,
-    border=4,
-)
-qr.add_data(webapp_url)
-qr.make(fit=True)
+with col2:
+    # Webapp URL
+    webapp_url = "https://your-webapp-url.com"  # <-- Replace this!
 
-# Style the QR code
-qr_img = qr.make_image(fill_color="#1f77b4", back_color="white").convert('RGB')
+    # Generate QR Code
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_H,
+        box_size=6,   # Smaller box size
+        border=2,     # Smaller border
+    )
+    qr.add_data(webapp_url)
+    qr.make(fit=True)
 
-# Resize the QR image for display (optional for consistency)
-qr_img = qr_img.resize((250, 250), Image.LANCZOS)
+    # Make styled QR (red fill, white background)
+    qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
 
-# Show the QR code
-st.image(qr_img, caption="📱 Scan to open the Plane Classifier!",
-         use_container_width=False)
+    # Resize even smaller if needed
+    qr_img = qr_img.resize((150, 150), Image.LANCZOS)  # 150x150 pixels
+
+    # Display QR code
+    st.image(qr_img, caption="📱 Scan Me!", use_container_width=False)
 
 # Model configuration
 MODEL_CONFIG = {
