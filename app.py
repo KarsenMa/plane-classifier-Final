@@ -13,35 +13,33 @@ import qrcode
 from PIL import Image
 
 
-# Set page config
+# Page config
 st.set_page_config(page_title="Plane Classifier", page_icon="🛫", layout="wide")
 
-# Create QR code
-webapp_url = "https://your-webapp-url.com"  # <-- Replace this!
+# Generate QR code
+webapp_url = "https://your-webapp-url.com"  # <-- your link
 
 qr = qrcode.QRCode(
     version=1,
     error_correction=qrcode.constants.ERROR_CORRECT_H,
-    box_size=6,
+    box_size=5,
     border=2,
 )
 qr.add_data(webapp_url)
 qr.make(fit=True)
 
 qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
-qr_img = qr_img.resize((100, 100), Image.LANCZOS)  # Smaller QR
+qr_img = qr_img.resize((100, 100), Image.LANCZOS)
 
-# Layout: 2 columns
-col1, col2 = st.columns([6, 1])  # Wider title, narrower QR
+# True columns layout
+col1, col2 = st.columns([5, 1])
 
 with col1:
-    st.markdown("## 🛫 Plane Classifier")  # Smaller title
+    # Using slightly smaller font, bold manually
+    st.markdown("## 🛫 **Plane Classifier**")
 
 with col2:
-    st.image(qr_img, caption=" ", use_container_width=False)  # NO text caption
-
-# Optional: add a slight separator (space)
-st.write("---")
+    st.image(qr_img, caption="", use_container_width=False)
 # Model configuration
 MODEL_CONFIG = {
     "Commercial Jets + BB": {"path": "custom.pt", "type": "detection"},
