@@ -11,18 +11,20 @@ import numpy as np
 import time
 import qrcode
 from PIL import Image
+import base64
+import io
 
 
-# Page config
+# Set page config
 st.set_page_config(page_title="Plane Classifier", page_icon="🛫", layout="wide")
 
-# Generate QR code
-webapp_url = "https://your-webapp-url.com"  # <-- your link
+# Create QR code
+webapp_url = "https://your-webapp-url.com"  # <-- your real URL
 
 qr = qrcode.QRCode(
     version=1,
     error_correction=qrcode.constants.ERROR_CORRECT_H,
-    box_size=5,
+    box_size=6,
     border=2,
 )
 qr.add_data(webapp_url)
@@ -31,15 +33,22 @@ qr.make(fit=True)
 qr_img = qr.make_image(fill_color="red", back_color="white").convert('RGB')
 qr_img = qr_img.resize((100, 100), Image.LANCZOS)
 
-# True columns layout
-col1, col2 = st.columns([5, 1])
+# Save QR as base64
+buffer = io.BytesIO()
+qr_img.save(buffer, format="PNG")
+qr_base64 = base64.b64encode(buffer.getvalue()).decode()
 
-with col1:
-    # Using slightly smaller font, bold manually
-    st.markdown("## 🛫 **Plane Classifier**")
+# Pure HTML+Streamlit clean layout
+st.markdown(
+    f"""
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h1 style="margin: 0;">🛫 Plane Classifier</h1>
+        <img src="data:image/png;base64,{qr_base64}" width="100" height="100">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
-with col2:
-    st.image(qr_img, caption="", use_container_width=False)
 # Model configuration
 MODEL_CONFIG = {
     "Commercial Jets + BB": {"path": "custom.pt", "type": "detection"},
