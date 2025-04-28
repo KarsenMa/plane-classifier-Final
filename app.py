@@ -46,8 +46,8 @@ st.markdown(
             <h1 style="margin: 0; font-size: 48px;">🛫 Plane Classifier</h1>
         </div>
         <div style="flex: 2; text-align: center;">
-            <img src="data:image/png;base64,{qr_base64}" width="80" height="80" style="margin-bottom: 4px;">
-            <div style="font-size: 14px; color: gray;">Scan to open the web app</div>
+            <img src="data:image/png;base64,{qr_base64}" width="80" height="80" style="margin-bottom: 2px;">
+            <div style="font-size: 14px; color: gray;">Scan to open!</div>
         </div>
     </div>
     """,
