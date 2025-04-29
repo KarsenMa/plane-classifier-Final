@@ -10,7 +10,7 @@ https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.app/
 OR
 
 Scan to open the app:
-![QR Code](./assets/qr_code.png)
+![QR Code](./Plane_Classifier_QR.png)
 
 # Installation
 pip install -r requirements.txt
