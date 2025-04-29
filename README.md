@@ -3,13 +3,13 @@
 ## 📸 Demo
 ![Plane Classifier Demo](./assets/demo.gif)
 
-## 🔗 Quick Access
-Click to open the app:
+## Try The App Yourself
+Click to link:
 https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.app/
 
 OR
 
-Scan to open the app:
+Use the QR Code:
 
 ![QR Code](./Plane_Classifier_QR.png)
 
