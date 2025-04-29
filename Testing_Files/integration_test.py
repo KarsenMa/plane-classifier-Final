@@ -59,9 +59,9 @@ def test_models():
             except Exception as e:
                 f.write(f"Error processing file: {str(e)}\n")
         # Print summary
-        accuracy = (correct / total) * 100 if total else 0
-        f.write(f"\nSuccess Rate: {correct}/{total} ({accuracy:.2f}%)\n")
-        print(f"Success Rate: {correct}/{total} ({accuracy:.2f}%)")
+        # accuracy = (correct / total) * 100 if total else 0
+        # f.write(f"\nSuccess Rate: {correct}/{total} ({accuracy:.2f}%)\n")
+        # print(f"Success Rate: {correct}/{total} ({accuracy:.2f}%)")
 
 if __name__ == "__main__":
     test_models()
