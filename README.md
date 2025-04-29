@@ -5,18 +5,18 @@
 ![Streamlit](https://img.shields.io/badge/streamlit-live-brightgreen)
 
 
-## 🔍 Overview
+## Overview
 
 **Plane Classifier** is a Streamlit-based web application that showcases two deep learning models for airplane recognition:
 
-- ✈️ **YOLOv8 Detection** model (`custom.pt`): Identifies commercial aircraft via bounding boxes.
-- 🛩️ **FGVC Aircraft Classification** model (`fgvc.pt`): Classifies 100+ airplane types from the FGVC dataset.
+- **Custom Detection** model (`custom.pt`): Identifies commercial aircraft via bounding boxes.
+- **FGVC Aircraft Classification** model (`fgvc.pt`): Classifies 100+ airplane types from the FGVC dataset.
 
 The app supports both image and video input, offers frame skipping for performance, and includes QR code access for mobile users.
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
 Install required Python libraries using:
 
@@ -39,13 +39,15 @@ Key dependencies:
 
 Click to Open: (https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.app/)
 
+OR
+
 Scan to open:
 
 ![QR Code](./Plane_Classifier_QR.png)
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 ### 1. Clone the repository
 
@@ -75,7 +77,7 @@ Download or move the following models to the root directory:
 
 ---
 
-## 🚀 Running the App
+## Running the App
 
 ```bash
 streamlit run app.py
@@ -83,7 +85,7 @@ streamlit run app.py
 
 ---
 
-## 🖼️ How to Use
+## How to Use
 
 1. Select a model (`Commercial Jets + BB` or `FGVC 100`).
 2. Upload an image or a video.
@@ -94,7 +96,7 @@ streamlit run app.py
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 plane-classifier-Final/
@@ -109,7 +111,7 @@ plane-classifier-Final/
 
 ---
 
-## 🛠 Troubleshooting
+## Troubleshooting
 
 - **YOLO loading errors**: Ensure `.pt` model files are correctly placed and match expected architecture.
 - **Video playback issues**: Use `.mp4` or `.avi` files under 100MB for best performance.
