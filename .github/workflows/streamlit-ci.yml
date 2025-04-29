@@ -47,8 +47,5 @@ jobs: #Run on ubuntu
           name: integration-test-results
           path: test_results.txt
 
-      # Optional: Run tests if you have a test suite
-      # - name: Run tests
-      #   run: pytest
 
 
