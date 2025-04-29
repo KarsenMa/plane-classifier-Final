@@ -41,13 +41,24 @@ Click to Open: (https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.
 
 OR
 
-Scan to open:
+Use the QR Code:
 
 ![QR Code](./Plane_Classifier_QR.png)
 
 ---
 
-## Installation & Setup
+## How to Use
+
+1. Select a model (`Commercial Jets + BB` or `FGVC 100`).
+2. Upload an image or a video.
+3. For video:
+   - Choose frame skip level.
+   - Click **"🚀 Process Video"**.
+4. View the prediction and confidence.
+
+---
+
+## Local Installation & Setup
 
 ### 1. Clone the repository
 
@@ -81,32 +92,6 @@ Download or move the following models to the root directory:
 
 ```bash
 streamlit run app.py
-```
-
----
-
-## How to Use
-
-1. Select a model (`Commercial Jets + BB` or `FGVC 100`).
-2. Upload an image or a video.
-3. For video:
-   - Choose frame skip level.
-   - Click **"🚀 Process Video"**.
-4. View the prediction and confidence.
-
----
-
-## Project Structure
-
-```
-plane-classifier-Final/
-├── app.py
-├── custom.pt
-├── fgvc.pt
-├── requirements.txt
-├── packages.txt
-├── README.md
-
 ```
 
 ---
