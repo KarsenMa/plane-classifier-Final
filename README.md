@@ -35,11 +35,12 @@ Key dependencies:
 - `streamlit-option-menu` – Custom sidebar navigation
 
 ---
-## Quick Access
+## Web App Quick Access
 
-[Web App] Click to Open: (https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.app/)
+Click to Open: (https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.app/)
 
 Scan to open:
+
 ![QR Code](./Plane_Classifier_QR.png)
 
 ---
