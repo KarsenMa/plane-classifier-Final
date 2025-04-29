@@ -1,8 +1,9 @@
+
 # 🛫 Plane Classifier Web Application
 
-![Python](https://img.shields.io/badge/python-3.9+-blue)
+![Python](https://img.shields.io/badge/python-3.1+-blue)
 ![Streamlit](https://img.shields.io/badge/streamlit-live-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
 
 ## 🔍 Overview
 
@@ -32,6 +33,14 @@ Key dependencies:
 - `numpy` – Numerical operations
 - `qrcode` – QR code generation
 - `streamlit-option-menu` – Custom sidebar navigation
+
+---
+## Quick Access
+
+[Web App] Click to Open: (https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.app/)
+
+Scan to open:
+![QR Code](./Plane_Classifier_QR.png)
 
 ---
 
@@ -84,15 +93,6 @@ streamlit run app.py
 
 ---
 
-## 📲 Quick Access
-
-[🔗 Web App](https://plane-classifier-final-hcvahrcjngedtezhz78tcw.streamlit.app/)
-
-Scan to open:
-![QR Code](./Plane_Classifier_QR.png)
-
----
-
 ## 📁 Project Structure
 
 ```
@@ -101,9 +101,9 @@ plane-classifier-Final/
 ├── custom.pt
 ├── fgvc.pt
 ├── requirements.txt
+├── packages.txt
 ├── README.md
-└── assets/
-    └── qr_code.png
+
 ```
 
 ---
@@ -116,9 +116,4 @@ plane-classifier-Final/
 
 ---
 
-## 🤝 Contact
-
-For feedback or collaboration, reach out via GitHub Issues or [your-email@example.com].
-
-MIT License © 2025 Karsen Madole
 
