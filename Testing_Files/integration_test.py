@@ -45,12 +45,12 @@ def test_models():
                     pred_id = int(fgvc_results.probs.top1)
                     pred_class = fgvc_model.names[pred_id]
                     conf = float(fgvc_results.probs.data[pred_id].item())
-                    f.write(f"Predicted: {pred_class} ({conf*100:.1f}%) | Ground Truth: {gt_class}  ")
+                    f.write(f"Predicted: {pred_class} ({conf*100:.1f}%) | Ground Truth: {gt_class}\n")
                     if gt_class and pred_class == gt_class:
-                        f.write("Correct\n")
+                        print("Correct")
                         correct += 1
                     elif gt_class and pred_class[:4] == gt_class[:4]:
-                        f.write("Correct Class, missed subclass\n")
+                        print("Correct Class, missed subclass")
                         correct += 1
                 else:
                     pred_class = ""
