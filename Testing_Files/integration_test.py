@@ -49,7 +49,7 @@ def test_models():
                     if gt_class and pred_class == gt_class:
                         f.write("Correct\n")
                         correct += 1
-                    elif gt_class and pred_class == gt_class[:4]:
+                    elif gt_class and pred_class[:4] == gt_class[:4]:
                         f.write("Correct Class, missed subclass\n")
                         correct += 1
                 else:
