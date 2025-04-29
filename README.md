@@ -18,7 +18,7 @@ The app supports both image and video input, offers frame skipping for performan
 
 ## Dependencies
 
-Install required Python libraries using:
+Install required Python libraries using (NOT needed for Web App Use):
 
 ```bash
 pip install -r requirements.txt
