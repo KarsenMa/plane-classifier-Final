@@ -1,3 +1,20 @@
+"""
+Plane Classifier Integration Testing
+
+This module performs integration testing for the Plane Classifier project by:
+1. Loading the ground truth data from a CSV file
+2. Selecting random image and video files from the testing directories
+3. Running predictions on these files using both the custom and FGVC models
+4. Comparing the predictions with ground truth data
+5. Generating a test results file with detailed outputs
+
+The test evaluates model accuracy considering both exact matches and
+class-level matches where subclass details might differ.
+
+Author: Plane Classifier Team
+Date: May 1, 2025
+"""
+
 import random
 import os
 import csv
@@ -6,6 +23,22 @@ from PIL import Image
 from ultralytics import YOLO
 
 def test_models():
+    """
+    Run integration tests on plane classification models.
+    
+    This function loads both classification models and runs predictions on randomly
+    selected test files, comparing the results with ground truth data. It generates
+    a 'test_results.txt' file containing detailed information about each prediction.
+    
+    The testing process includes:
+    - Loading ground truth data from CSV
+    - Randomly selecting up to 10 image/video files
+    - Running predictions with both YOLO models
+    - Evaluating prediction accuracy
+    
+    Returns:
+        None: Results are written to 'test_results.txt'
+    """
     # Load ground truth
     gt_path = Path("Testing_Files/ground_truth.csv")
     ground_truth = {}

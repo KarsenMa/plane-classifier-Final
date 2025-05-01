@@ -1,10 +1,33 @@
+"""
+FGVC Aircraft Classifier Training Script
+
+This script trains YOLO classification models on the FGVC Aircraft dataset.
+It configures and executes the training process with optimized parameters for
+aircraft classification. Containts toggle to resume training if stopped.
+
+Features:
+    - Alternates between YOLOV8 and YOLOV11 classification models with commented options
+    - Configurable training parameters including epochs, image size, batch size
+    - Early stopping functionality to prevent overfitting
+
+Usage:
+    1. Configure training parameters as needed
+    2. Run the script to start training
+    3. Data should be in [current_directory]/datasets/fgvc_aircraft_cls
+
+Requirements:
+    - PyTorch with CUDA support for GPU acceleration
+    - Ultralytics YOLO library
+    - FGVC Aircraft dataset properly organized in datasets/fgvc_aircraft_cls
+"""
+
 import os
 # Avoid OpenMP crash
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import torch
 from ultralytics import YOLO
 
-# ------------------- CONFIG -------------------
+# Model configurations
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "datasets", "fgvc_aircraft_cls")
@@ -23,7 +46,7 @@ SAVE_MODEL = True
 SAVE_PERIOD = 1
 PATIENCE = 10
 
-# ------------------- MAIN -------------------
+# Main training function
 
 if __name__ == "__main__":
 
@@ -37,7 +60,7 @@ if __name__ == "__main__":
     model = YOLO(MODEL_TYPE)
 
     results = model.train(
-        # resume = True,
+        # resume = True, # Enable if training was interrupted and you want to resume
         data=DATA_DIR,
         epochs=EPOCHS,
         imgsz=IMAGE_SIZE,

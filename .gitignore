@@ -35,3 +35,7 @@ venv/
 # History files
 .history/
 
+# Homework files
+*.docx
+*.doc
+

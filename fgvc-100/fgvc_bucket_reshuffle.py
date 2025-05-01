@@ -3,7 +3,24 @@ import random
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-"""This script reshuffles the buckets from the default 0.33/0.33/0.33 split to 0.7/0.2/0.1 for train/val/test
+"""
+FGVC Aircraft Dataset Split Adjuster
+
+This script reshuffles the image buckets from the default 0.33/0.33/0.33 split to 
+a more common 0.7/0.2/0.1 split for train/val/test datasets. The script preserves
+class stratification to ensure balanced representation across all splits.
+
+Usage:
+    Running the script will do the following:
+    1. Collect all labeled images from the existing split directories
+    2. Perform a stratified shuffle to create new split ratios
+    3. Save CSV files with the new image distributions
+
+Output:
+    Three CSV files in the OUTPUT_DIR with filename and class columns:
+    - train.csv
+    - val.csv
+    - test.csv
 """
 
 # --- CONFIGURATION ---

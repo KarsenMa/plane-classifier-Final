@@ -1,5 +1,19 @@
-
 # Import libraries
+"""
+Plane Classifier Web Application
+
+This Streamlit application provides an interface for classifying airplane models 
+using YOLO machine learning models. It supports two primary models:
+1. Commercial Jets with bounding box detection
+2. FGVC-100 aircraft classification
+
+The app allows users to upload images or videos for real-time aircraft classification,
+and displays the results with confidence scores and visual indicators.
+
+Authors: Plane Classifier Team
+Date: May 2025
+"""
+
 import streamlit as st
 from streamlit_option_menu import option_menu
 from ultralytics import YOLO
@@ -13,7 +27,6 @@ import qrcode
 from PIL import Image
 import base64
 import io
-
 
 # Set page config
 st.set_page_config(page_title="Plane Classifier", page_icon="🛫", layout="wide")
@@ -63,7 +76,21 @@ MODEL_CONFIG = {
 
 @st.cache_resource
 def load_model(model_path):
-    """Load a YOLO model from the given path with error handling."""
+    """
+    Load a YOLO model from the given path with error handling.
+    
+    This function is cached by Streamlit to prevent reloading the model
+    on each rerun of the app.
+    
+    Parameters:
+        model_path (str): Path to the YOLO model file (.pt)
+    
+    Returns:
+        YOLO: The loaded YOLO model object or None if loading fails
+        
+    Raises:
+        Displays a Streamlit error message if model loading fails
+    """
     print(f"Loading model: {model_path}")
     try:
         model = YOLO(model_path)
@@ -87,7 +114,21 @@ COMMERCIAL_CLASS_NAMES = {
 
 
 def classify_image(model, image, model_type, class_names):
-    """Run classification or detection on a single image."""
+    """
+    Run classification or detection on a single image.
+    
+    Parameters:
+        model (YOLO): The YOLO model to use for prediction
+        image (PIL.Image): The input image to classify
+        model_type (str): Type of model - either "detection" or "classification"
+        class_names (dict): Dictionary mapping class IDs to readable class names
+        
+    Returns:
+        tuple: Contains three elements:
+            - label (str): The predicted class label
+            - confidence (float): Confidence score between 0 and 1
+            - output_image (PIL.Image): Original image with annotations if detection model
+    """
     results = model.predict(image, verbose=False)
     output_image = image.copy()
     label = "No prediction"
@@ -122,7 +163,25 @@ def classify_image(model, image, model_type, class_names):
 
 
 def stream_video(model, video_path, model_type, class_names, frame_skip=1):
-    """Process video frame-by-frame with optional frame skipping."""
+    """
+    Process video frame-by-frame with optional frame skipping for real-time aircraft detection.
+    
+    Processes a video file by reading frames sequentially, applying the YOLO model
+    for classification or detection, and displaying the results in the Streamlit UI
+    with a progress bar.
+    
+    Parameters:
+        model (YOLO): The YOLO model to use for prediction
+        video_path (str): Path to the video file
+        model_type (str): Type of model - either "detection" or "classification"
+        class_names (dict): Dictionary mapping class IDs to readable class names
+        frame_skip (int, optional): Number of frames to skip between processed frames.
+                                  Higher values result in faster processing but lower
+                                  temporal resolution. Defaults to 1 (process every frame).
+    
+    Returns:
+        None: Results are displayed directly in the Streamlit UI
+    """
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
         st.error("Error opening video file.")
@@ -197,7 +256,7 @@ def stream_video(model, video_path, model_type, class_names, frame_skip=1):
     label_display.markdown(f"### 🛫 Final Prediction: **{last_label_text}**")
     st.success("🟢 Video processing complete!")
 
-
+# UI Section - Model Selection
 model_option_1 = "Commercial Jets + BB"
 model_option_2 = "FGVC 100"
 

@@ -1,3 +1,25 @@
+"""
+FGVC Aircraft Model Testing Utility
+
+This script evaluates a trained YOLO classification model on aircraft images. It:
+1. Loads a trained model from the specified path
+2. Processes all test images in the test directory
+3. Visualizes predictions by overlaying class names and confidence scores
+4. Compares predictions against ground truth if available
+5. Generates a visualization of the prediction distribution
+6. Logs all results to an output log file
+
+Usage:
+    Run this script after training a YOLO model to evaluate its performance.
+    The script will automatically process all images in the test directory.
+
+Output:
+    - Annotated images in the output directory
+    - A log file with predictions for each image
+    - A bar chart showing the distribution of predicted classes
+    - Accuracy metrics if ground truth data is available
+"""
+
 import os
 # Avoid OpenMP crash
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
@@ -9,9 +31,7 @@ import matplotlib.pyplot as plt
 from collections import Counter
 from ultralytics import YOLO
 
-
-
-# --- CONFIGURATION ---
+# CONFIG
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "trained_yolo_files", "yolo11x-702010-50epoch-size256", "best.pt")
 TEST_DIR = os.path.join(BASE_DIR, "common_test_images")
@@ -22,14 +42,14 @@ GROUND_TRUTH_FILE = os.path.join(BASE_DIR, "trained_yolo_files", "yolo11x-702010
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 model = YOLO(MODEL_PATH)
 
-# --- GROUND TRUTH ---
+# GROUND TRUTH
 if os.path.exists(GROUND_TRUTH_FILE):
     ground_truth = pd.read_csv(GROUND_TRUTH_FILE)
     ground_truth.set_index("filename", inplace=True)
 else:
     ground_truth = pd.DataFrame()
 
-# --- CLASSIFICATION ---
+# CLASS
 predictions = []
 total_images = sum(len(files) for _, _, files in os.walk(TEST_DIR))
 image_count = 0
@@ -58,7 +78,7 @@ with open(LOG_PATH, "w") as log_file:
                     log_file.write(f"{file}: Predicted {class_name} ({confidence:.2f})\n")
                     predictions.append((file, class_name))
 
-# --- EVALUATION ---
+# EVALUATION
 pred_df = pd.DataFrame(predictions, columns=["filename", "predicted"])
 if not ground_truth.empty:
     eval_df = pred_df.join(ground_truth, on="filename")
@@ -69,7 +89,7 @@ else:
     print("Ground truth file not found. Evaluation skipped.")
     eval_df = pred_df
 
-# --- VISUAL SUMMARY ---
+# MAKE GRAPHS
 class_counts = Counter(eval_df["predicted"])
 plt.figure(figsize=(12, 6))
 plt.bar(class_counts.keys(), class_counts.values())

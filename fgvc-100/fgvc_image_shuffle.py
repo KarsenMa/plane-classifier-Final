@@ -1,3 +1,23 @@
+"""
+FGVC Image Reshuffler
+
+This script redistributes images from the original FGVC Aircraft dataset structure into a
+new directory structure based on train/val/test splits defined in CSV files. The script:
+1. Reads predefined CSV files containing filename and class information
+2. Locates source images from the original dataset structure
+3. Copies images to the new structure while maintaining class organization
+4. Reports statistics on the redistribution process
+
+Usage:
+    Simply run the script and it will copy files from RAW_IMAGE_ROOT to OUTPUT_ROOT
+    based on the split definitions in the CSV files.
+
+Requirements:
+    - CSV split files with 'filename' and 'class' columns
+    - Original dataset images accessible at RAW_IMAGE_ROOT
+    - Sufficient disk space at OUTPUT_ROOT
+"""
+
 import os
 import pandas as pd
 import shutil

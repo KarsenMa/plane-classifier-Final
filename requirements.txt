@@ -6,3 +6,4 @@ Pillow
 opencv-python
 streamlit-option-menu
 qrcode[pil]
+pdoc3

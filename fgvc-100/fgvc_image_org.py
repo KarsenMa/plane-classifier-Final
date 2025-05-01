@@ -1,11 +1,29 @@
+"""
+FGVC Aircraft Dataset Reorganizer
+
+This script reorganizes the FGVC Aircraft dataset for use with YOLO classification models.
+It takes the raw FGVC dataset structure and converts it to the format expected by YOLO,
+where images are organized in directories by class and split type.
+
+Structure:
+    Raw dataset: Single images directory with CSV files defining splits and classes
+    Target structure: 
+        /datasets/fgvc_aircraft_cls/train/[class_name]/[images]
+        /datasets/fgvc_aircraft_cls/val/[class_name]/[images]
+        /datasets/fgvc_aircraft_cls/test/[class_name]/[images]
+
+Usage:
+    This script was run on 4.5.2025 and should not need to be run again 
+    unless the dataset structure changes.
+
+Note:
+    Class names containing forward slashes (/) are replaced with hyphens (-) 
+    to ensure compatibility with filesystem paths.
+"""
+
 import os
 import shutil
 import pandas as pd
-
-"""
-This script reorganizes the FGVC Aircraft dataset for YOLOv8 classification mode.
-It was run on 4.5.2025 and should not need to be run again unless the dataset structure changes.
-"""
 
 # --- CONFIGURATION ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

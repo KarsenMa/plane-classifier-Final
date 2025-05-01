@@ -1,4 +1,3 @@
-
 # 🛫 Plane Classifier Web Application
 
 ![Python](https://img.shields.io/badge/python-3.1+-blue)
@@ -33,6 +32,11 @@ Key dependencies:
 - `numpy` – Numerical operations
 - `qrcode` – QR code generation
 - `streamlit-option-menu` – Custom sidebar navigation
+- `torch` - Deep learning framework for model inference
+- `torchvision` - Computer vision utilities for PyTorch
+- `qrcode[pil]` - QR code rendering
+- `pdoc3` - Automatic documentation generation
+
 
 ---
 ## Web App Quick Access
@@ -103,5 +107,5 @@ streamlit run app.py
 - **CUDA errors**: Ensure PyTorch matches your CUDA version, or force CPU usage.
 
 ---
-
-
+## Documentation
+View the pdocs generated htmls files by opening ```\Python_pdoc_documentation\index.html``` in a web browser.
