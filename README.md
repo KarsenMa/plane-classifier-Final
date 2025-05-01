@@ -109,3 +109,4 @@ streamlit run app.py
 ---
 ## Documentation
 View the pdocs generated htmls files by opening ```\Python_pdoc_documentation\index.html``` in a web browser.
+Note: pdoc is a different utility from pydoc.
