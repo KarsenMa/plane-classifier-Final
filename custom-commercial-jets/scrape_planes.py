@@ -1,3 +1,11 @@
+"""
+scrape_planes.py
+
+Web scraper for downloading aircraft images from airliners.net using search queries.
+Supports multithreaded scraping and limits per aircraft class and subclass. Handles
+subclass balancing, progress tracking with checkpoints, and structured folder output.
+"""
+
 USE_THREADED = True
 
 import requests

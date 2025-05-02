@@ -1,3 +1,13 @@
+"""
+train_models.py
+
+Trains two YOLOv8 models using the Ultralytics API:
+1. A subclass model (fine-grained aircraft types)
+2. A class model (high-level aircraft families)
+
+Both models are trained using 100 epochs and 640px input resolution.
+"""
+
 from ultralytics import YOLO
 
 # Paths to YAML configs

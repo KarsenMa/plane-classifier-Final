@@ -1,3 +1,10 @@
+"""
+class_mapping.py
+
+Defines a dictionary mapping aircraft subclasses (e.g., 'A319') to broader aircraft families (e.g., 'A320-family').
+Used to convert fine-grained subclass labels into higher-level class labels for classification tasks.
+"""
+
 # Map subclasses to class families
 SUBCLASS_TO_CLASS = {
     'A318': 'A320-family', 'A319': 'A320-family', 'A320': 'A320-family', 'A321': 'A320-family',

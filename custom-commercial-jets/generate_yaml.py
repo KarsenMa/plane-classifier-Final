@@ -1,3 +1,10 @@
+"""
+generate_yaml.py
+
+Converts YOLO annotation files between subclass and class-level formats using a mapping.
+Generates YOLOv8-compatible dataset structures and saves `data.yaml` files for training.
+"""
+
 import os
 import shutil
 from collections import defaultdict
@@ -35,8 +42,8 @@ for file in os.listdir(source_lbl_dir):
         subclass_names.add(subclass)
         class_names.add(class_name)
 
-        subclass_lines.append(f"{subclass} {x} {y} {w} {h}\\n")
-        class_lines.append(f"{class_name} {x} {y} {w} {h}\\n")
+        subclass_lines.append(f"{subclass} {x} {y} {w} {h}\n")
+        class_lines.append(f"{class_name} {x} {y} {w} {h}\n")
 
     # Copy image and write new label files
     shutil.copy(img_src, os.path.join(subclass_dir, "images"))
