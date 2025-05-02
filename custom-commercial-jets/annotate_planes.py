@@ -1,3 +1,11 @@
+"""
+annotate_planes.py
+
+Annotates airplane images using a pretrained YOLOv8 model.
+It identifies airplane objects and creates YOLO-format bounding box labels
+with subclass labels parsed from the image filenames.
+"""
+
 import os
 import cv2
 import glob

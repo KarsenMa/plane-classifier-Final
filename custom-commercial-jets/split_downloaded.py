@@ -1,3 +1,10 @@
+"""
+split_downloaded.py
+
+Splits downloaded aircraft images into train, validation, and test datasets by subclass.
+Ensures balanced and shuffled distribution across all splits.
+"""
+
 import os
 import shutil
 import random

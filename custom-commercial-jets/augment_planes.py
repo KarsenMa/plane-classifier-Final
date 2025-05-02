@@ -1,3 +1,10 @@
+"""
+augment_planes.py
+
+Applies data augmentation to airplane images and their corresponding YOLO annotations
+using Albumentations. Saves multiple augmented versions per input image to improve training robustness.
+"""
+
 import os
 import cv2
 import glob
